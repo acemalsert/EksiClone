@@ -1,4 +1,5 @@
-﻿using BlazorSozluk.Api.Domain.Models;
+﻿
+using BlazorSozluk.Api.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
