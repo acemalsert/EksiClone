@@ -1,4 +1,5 @@
 ﻿using BlazorSozluk.Infrastructure.Persistance.Context;
+using BlazorSozluk.Infrastructure.Persistence.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

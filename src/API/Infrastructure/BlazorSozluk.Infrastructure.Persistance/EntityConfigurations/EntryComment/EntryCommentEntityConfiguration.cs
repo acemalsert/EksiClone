@@ -1,4 +1,5 @@
-﻿using BlazorSozluk.Infrastructure.Persistance.Context;
+﻿
+using BlazorSozluk.Infrastructure.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,9 +13,9 @@ public class EntryCommentEntityConfiguration : BaseEntityConfiguration<Api.Domai
 
         builder.ToTable("entrycomment", BlazerSozlukContext.DEFAULT_SCHEMA);
 
-        builder.HasOne(i => i.CretedBy)
+        builder.HasOne(i => i.CreatedBy)
             .WithMany(i => i.EntryComments)
-            .HasForeignKey(i => i.CreateById)
+            .HasForeignKey(i => i.CreatedById)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(i => i.Entry)
