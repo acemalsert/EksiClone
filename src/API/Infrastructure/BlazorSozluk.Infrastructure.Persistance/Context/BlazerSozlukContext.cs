@@ -1,11 +1,7 @@
 ﻿using BlazorSozluk.Api.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BlazorSozluk.Infrastructure.Persistance.Context
 {
@@ -13,6 +9,10 @@ namespace BlazorSozluk.Infrastructure.Persistance.Context
     {
         public const string DEFAULT_SCHEMA = "dbo";
 
+        public BlazerSozlukContext()
+        {
+
+        }
         public BlazerSozlukContext(DbContextOptions options) : base(options)
         {
 
@@ -26,6 +26,18 @@ namespace BlazorSozluk.Infrastructure.Persistance.Context
         public DbSet<EntryCommentFavorite> EntryCommentFavorites { get; set; }
         public DbSet<EntryVote> EnrtyVotes { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                var connStr = "Server=localhost;Database=master;Trusted_Connection=True;";
+                optionsBuilder.UseSqlServer(connStr, opt =>
+                {
+                    opt.EnableRetryOnFailure();
+                });
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             OnBeforeSave();
